@@ -148,7 +148,7 @@ public final class EventAnalyser implements Listener
                     {
                         Bukkit.getPluginManager().callEvent( new PlayerArmorEquipEvent( player, now[i] ) );
                     }
-                    else if( saved != null && ( !now[i].toString().equalsIgnoreCase(saved[i].toString()) ) )
+                    else if( saved != null && (now[i] != null && saved[i] != null && !now[i].toString().equalsIgnoreCase(saved[i].toString()) ) )
                     {
                         Bukkit.getPluginManager().callEvent( new PlayerArmorUnequipEvent( player, saved[i] ) );
                         Bukkit.getPluginManager().callEvent( new PlayerArmorEquipEvent( player, now[i] ) );
