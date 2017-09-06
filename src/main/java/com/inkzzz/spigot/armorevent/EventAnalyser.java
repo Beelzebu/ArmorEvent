@@ -14,11 +14,11 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 import java.util.concurrent.ConcurrentMap;
+import org.bukkit.plugin.Plugin;
 
 /**
  * Created by Luke Denham on 31/05/2016.
@@ -26,10 +26,12 @@ import java.util.concurrent.ConcurrentMap;
 public final class EventAnalyser implements Listener
 {
 
+    private final Plugin plugin;
     private final ConcurrentMap<UUID, ItemStack[]> contents = Maps.newConcurrentMap();
 
-    public EventAnalyser()
+    public EventAnalyser(Plugin plugin)
     {
+        this.plugin = plugin;
         Bukkit.getOnlinePlayers().stream().forEach( player ->
         {
             getContents().putIfAbsent( player.getUniqueId() , player.getEquipment().getArmorContents() );
@@ -160,7 +162,7 @@ public final class EventAnalyser implements Listener
 
             }
 
-        }.runTaskLater(JavaPlugin.getPlugin(ArmorEventPlugin.class), 1L);
+        }.runTaskLater(plugin, 1L);
 
     }
 

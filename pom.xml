@@ -8,7 +8,6 @@
     <artifactId>ArmorEvent</artifactId>
     <version>1.4</version>
 
-    <packaging>pom</packaging>
     <name>ArmorEvent</name>
 
     <developers>
@@ -38,7 +37,8 @@
         </dependency>
     </dependencies>
     <build>
-        <defaultGoal>clean package</defaultGoal>
+        <finalName>${project.name}</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -51,5 +51,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
