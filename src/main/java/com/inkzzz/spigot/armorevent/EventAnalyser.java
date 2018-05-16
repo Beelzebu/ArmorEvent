@@ -1,7 +1,7 @@
 package com.inkzzz.spigot.armorevent;
 
-import com.google.common.collect.Maps;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -14,7 +14,10 @@ import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemBreakEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -26,7 +29,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public final class EventAnalyser implements Listener {
 
     private final Plugin plugin;
-    private final ConcurrentMap<UUID, ItemStack[]> contents = Maps.newConcurrentMap();
+    private final ConcurrentMap<UUID, ItemStack[]> contents = new ConcurrentHashMap<>();
 
     public EventAnalyser(Plugin plugin) {
         this.plugin = plugin;
@@ -74,8 +77,8 @@ public final class EventAnalyser implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public final void onEvent(final PlayerQuitEvent event) {
-        if (this.getContents().containsKey(event.getPlayer().getUniqueId())) {
-            this.getContents().remove(event.getPlayer().getUniqueId());
+        if (getContents().containsKey(event.getPlayer().getUniqueId())) {
+            getContents().remove(event.getPlayer().getUniqueId());
         }
     }
 
@@ -90,7 +93,7 @@ public final class EventAnalyser implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public final void onEvent(final PlayerItemBreakEvent event) {
-        this.check(event.getPlayer());
+        check(event.getPlayer());
     }
 
     private void check(final Player player) {

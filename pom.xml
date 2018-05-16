@@ -6,7 +6,7 @@
 
     <groupId>com.inkzzz.armorevent</groupId>
     <artifactId>ArmorEvent</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
 
     <name>ArmorEvent</name>
 
@@ -19,6 +19,14 @@
             </roles>
             <email>development@inkzzz.com</email>
             <organization>Ink Studios</organization>
+        </developer>
+        <developer>
+            <id>Beelzebu</id>
+            <name>Jaime</name>
+            <roles>
+                <role>Mantainer</role>
+            </roles>
+            <email>jsuarez.lara@outlook.com</email>
         </developer>
     </developers>
 
@@ -33,7 +41,13 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
